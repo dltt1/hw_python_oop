@@ -71,9 +71,12 @@ class Running(Training):
         super().__init__(action, duration, weight)
 
     def get_spent_calories(self) -> float:
-        calories_run = (self.coeff_calorie_1 * self.get_mean_speed()
-                        - self.coeff_calorie_2) * self.weight / self.M_IN_KM \
+        calories_run = (
+                        (self.coeff_calorie_1
+                         * self.get_mean_speed()
+                         - self.coeff_calorie_2) * self.weight / self.M_IN_KM
                         * (self.duration * 60)
+                        )
         return calories_run
 
 
@@ -90,10 +93,14 @@ class SportsWalking(Training):
         self.height = height
 
     def get_spent_calories(self) -> float:
-        calories_walk = (self.coeff_walk_1 * self.weight
+        calories_walk = (
+                        (self.coeff_walk_1
+                         * self.weight
                          + (self.get_mean_speed() ** 2 // self.height)
-                         * self.coeff_walk_2 * self.weight) \
+                         * self.coeff_walk_2
+                         * self.weight)
                          * (self.duration * 60)
+                         )
         return calories_walk
 
 
@@ -113,13 +120,21 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_spent_calories(self) -> float:
-        calories_swim = (self.get_mean_speed() + self.coeff_swim_1) \
-                         * self.coeff_swim_2 * self.weight
+        calories_swim = (
+                        (self.get_mean_speed()
+                         + self.coeff_swim_1)
+                         * self.coeff_swim_2
+                         * self.weight
+                         )
         return calories_swim
 
     def get_mean_speed(self) -> float:
-        avg_speed_swim = self.lenght_pool \
-                         * self.count_pool / self.M_IN_KM / self.duration
+        avg_speed_swim = (
+                         self.lenght_pool
+                         * self.count_pool
+                         / self.M_IN_KM
+                         / self.duration
+                         )
         return avg_speed_swim
 
 
