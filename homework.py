@@ -143,8 +143,7 @@ def read_package(workout_type: str, data: list) -> Training:
     if workout_type not in type_training:
         raise KeyError(
             f'Нет такого типа тренировки,'
-            f'вам доступны только {type_training.keys()}'
-            )
+            f'вам доступны только {type_training.keys()}')
     return type_training[workout_type](*data)
 
 
